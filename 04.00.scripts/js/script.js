@@ -23,6 +23,10 @@ $(function() {
   // $('.blue-box').before($('.red-box'));
 
   // CHALLENGE - add more boxes
+  // $('.red-box').after('<div class="red-box">New red box</div>')
+  // $('.blue-box').after(function() {
+  //   return "<div class='green-box'>Final green box</div>"
+  // })
 
 
   // REPLACING ELEMENTS
@@ -31,6 +35,11 @@ $(function() {
   // $('p').first().replaceWith($('li').first())  // replace first paragraph with first bullet/sub-bullet element
 
   // CHALLENGE - replace red and blue boxes with a green box
+  // let greenBox = function() {
+  //   return "<div class='green-box'>Replacement green box</div>"
+  // }
+  // $('.red-box').replaceWith(greenBox);
+  // $('.blue-box').replaceWith(greenBox);
 
   // all at once
   // $('<div class="green-box">Replacement green</div>').replaceAll('.red-box, .blue-box');
@@ -40,14 +49,15 @@ $(function() {
   // $('li').remove();  // complete removal
 
   // CHALLENGE - remove all direct children of the form which are NOT text area, input type = text or <br>
+  // $('form').children().not('input:text, textarea, br').remove();
 
   // let detachedListItem = $('li').detach();  // retain event handlers
   // $('#content').append(detachedListItem);
 
-  $('p').first().empty();  // element still exists in DOM, but doesn't contain content or child tags
+  // $('p').first().empty();  // element still exists in DOM, but doesn't contain content or child tags
 
   // CHALLENGE - empty all boxes on the page so they don't have text inside
-
+  // $('.red-box, .green-box, .blue-box').empty();
 
 
   // MANIPULATING ATTRS AND PROPERTIES
