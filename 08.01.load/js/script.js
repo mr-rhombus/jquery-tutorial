@@ -1,17 +1,40 @@
+// AJAX
 $(function () {
+  // FETCH SERVER FILES - $.load()
+  // $('#code').load('js/script.js');  // look for this file on the server (i.e. my machine in this case) and show it in a code element
 
-  // You can load files from the server (or local file system in this case) with
-  // jQuery using its load() function.
-  $("#code").load("js/script.js");
+  // $('#code').load('idontexist.php', function(response, status) {
+  //   if (status === 'error') {
+  //     alert('could not find idontexist.php');
+  //   }
+    // console.log(response);
+  // });
 
-  // You can also handle different responses, for instance if an error occurred.
-  $("#code").load("idontexist.php", function(response, status) {
-    console.log(response);  // empty (normally contains the fetched contents)
-    console.log(status);  // error
+  // $('#code').load('js/script.js', function(response, status) {
+  //   if (status === 'error') {
+  //     alert('could not find file');
+  //   }
+  //   console.log(response);
+  // });
 
-    if (status === "error") {
-      alert("Could not find idontexist.php");
-    }
+
+  // RETRIEVE IMAGES FROM FLICKR API - $.getJSON()
+  let flickrAPIUrl = 'https://www.flickr.com/services/feeds/photos_public.gne?jsoncallback=?';  // ?jsoncallback=? = "JSON P" format, allows us to make the request to the flickr domain server
+
+  $.getJSON(flickrAPIUrl, {  // async call
+    // options
+    tags: 'sun, beach',
+    tagmode: 'any',
+    format: 'json'
+  }).done(function(data) {  // event handler to execute when request is successful
+    $.each(data.items, function(index, item) {
+      console.log(item);
+      $('<img>').attr('src', item.media.m).appendTo('#flickr');
+      if (index === 4) {  // just keep 5 images
+        return false;
+      }
+    })
+  }).fail(function() {  // event handler if request fails
+    alert('AJAX call failed');
   });
-
 });
